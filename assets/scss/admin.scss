@@ -1,0 +1,488 @@
+%clearfix{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+%remove_icon{
+    background: url(../images/remove.png) center center no-repeat;
+    width: 22px;
+    height: 22px;
+    display: block;
+    position: absolute;
+    &:hover{
+        opacity: .7;
+        filter: alpha(opacity=70);
+    }
+}
+
+.quickfield_form_row{
+    &{
+        padding: 16px 0px 16px 0px;
+        border-top: 1px solid #f1f1f1;
+    }
+    &:first-of-type{
+        border-top: none;
+        padding-top: 10px;
+    }
+    .col-label,.col-field{
+        float: left;
+    }
+    .col-label{
+        width: 25%;
+        color: #777;
+    }
+    .col-field{
+        width: 75%;
+    }
+    &:after{
+        @extend %clearfix;
+    }
+    .description{
+        display: block;
+        color: #666;
+        font-size: 13px;
+        font-style: italic;
+        margin-top: 4px;
+    }
+    .quickfield-checkboxes,.quickfield-radios{
+        &{
+            padding: 0;
+            margin: 0;
+        }
+        li{
+            list-style: none;
+            display: block;
+            span{
+                margin-left: 2px;
+            }
+        }
+        &.inline{
+            li{
+                display: inline;
+                margin-right: 15px;
+            }
+        }
+    }
+}
+
+.quickfield-image_picker{
+
+    .attached_images{
+        &:after{
+            @extend %clearfix;
+        }
+    }
+
+    .image_list{
+        &{
+            margin: 0;
+            padding: 0;
+            cursor: move;
+            float: left;
+        }
+        &:after{
+            @extend %clearfix;
+        }
+        li{
+            &{
+                position: relative;
+                background: #F5F5F5;
+                padding: 0;
+                float: left;
+                margin: 0 5px 5px 0;
+                height: 80px;
+                width: 80px;
+                line-height: 75px;
+                text-align: center;
+                border: 1px solid #DFDFDF;
+                overflow: hidden;
+            }
+
+            .inner{
+                width: 80px;
+                height: 80px;
+                overflow: hidden;
+                text-align: center;
+            }
+            .remove{
+                @extend %remove_icon;
+                top: 50%;
+                left: 50%;
+                -webkit-transform: translate(-50%,-50%);
+                -ms-transform: translate(-50%,-50%);
+                transform: translate(-50%,-50%);
+            }
+
+            img{
+                max-height: 80px;
+                display: inline-block;
+                vertical-align: middle;
+                width: auto;
+                height: auto;
+            }
+        }
+
+    }
+
+    .add_images{
+        color: #C8C8C8;
+        border-color: #C8C8C8;
+        text-decoration: none;
+
+        margin-top: 0;
+        display: block;
+        float: left;
+        height: 80px;
+        width: 80px;
+        background: url(../images/add.png) center center no-repeat #F5F5F5;
+        border: 1px solid #DFDFDF;
+        font-size: 0;
+        &:hover{
+            color: #C8C8C8;
+            border-color: #C8C8C8;
+            text-decoration: none;
+        }
+    }
+}
+
+.quickfield-image_background{
+    &{
+        width: 600px;
+        max-width: 100%;
+    }
+    .attachment-media-view{
+        &{
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position:relative;
+        }
+        .remove{
+            @extend %remove_icon;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            display: none;
+
+        }
+    }
+
+    .placeholder{
+        &{
+            width: 100%;
+            position: relative;
+            text-align: center;
+            cursor: default;
+            border: 1px dashed #b4b9be;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 40px 0;
+            line-height: 20px;
+            font-size: 14px;
+            background-color: #fbfbfb;
+        }
+    }
+
+    .added{
+        .placeholder{
+            opacity: 0;
+            visibility: hidden;
+        }
+        .remove{
+            display: block;
+        }
+    }
+
+    .button {
+        float: right;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+}
+
+.quickfield-image_select{
+    &{
+        margin: -6px 0 0 0;
+        padding: 0;
+    }
+    label{
+        &{
+            display: inline-block;
+            margin-right: 6px;
+            margin-top: 6px;
+        }
+        input{
+            display: none;
+        }
+        span{
+            display: block;
+            -webkit-box-shadow: inset 0 0 0 0px #fff,inset 0 0 0 1px #DFDFDF;
+            box-shadow: inset 0 0 0 0px #fff,inset 0 0 0 1px #DFDFDF;
+            padding: 3px;
+        }
+        input[type="radio"]:checked+span{
+            -webkit-box-shadow: inset 0 0 0 0px #fff,inset 0 0 0 3px #0073aa;
+            box-shadow: inset 0 0 0 0px #fff,inset 0 0 0 3px #0073aa;
+        }
+        img{
+            display: block;
+        }
+        &:hover{
+            span{
+                -webkit-box-shadow: inset 0 0 0 0px #fff,inset 0 0 0 1px #0073aa;
+                box-shadow: inset 0 0 0 0px #fff,inset 0 0 0 1px #0073aa;
+            }
+        }
+    }
+}
+
+.quickfield-icon_picker{
+
+    .icons-selector .selector-search i{
+        top:12px;
+    }
+
+}
+
+
+.quickfield-link{
+    &{
+        color: #666;
+    }
+    .link_label{
+        font-weight: 700;
+        margin-left: 10px;
+        display: inline-block;
+        line-height: 28px;
+        color: #333;
+    }
+    .url-label{
+        color: #0073aa;
+    }
+}
+
+.quickfield-map{
+    &{
+        position: relative;
+    }
+    .map_search{
+        &{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fff;
+            padding: 3px;
+            border-radius: 3px;
+            opacity: 1;
+            z-index:999;
+            box-shadow: 1px 1px 1px rgba(0,0,0,.2);
+        }
+
+        input{
+            width: 260px;
+            max-width: 100%;
+            border: none;
+            box-shadow: none;
+            border-right: 1px solid #eee;
+            background: transparent;
+        }
+        i{
+            color: #333;
+            font-size: 14px;
+            margin: 0px 7px 0px 5px;
+            position: relative;
+            top: -1px;
+        }
+    }
+    .map_canvas{
+        height: 350px;
+        background-color: #ccc;
+    }
+}
+
+#side-sortables,
+.widget-inside{
+    .quickfield_form_row{
+        &{
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .col-label,.col-field{
+            float: none;
+            width: auto;
+        }
+        .col-label{
+            &{
+                margin-bottom: 5px;
+            }
+            label{
+                font-weight: 500;
+                color: #333;
+            }
+        }
+
+    } 
+    .quickfield-select{
+        display: block;
+        width: 100%;
+    }
+    .quickfield-map{
+
+        &:after{
+            @extend %clearfix;
+        }
+        .map_search{
+            &{
+                position: initial;
+                border: 1px solid #ddd;
+                padding-right: 32px;
+                margin-bottom: 10px;
+                border-radius: 0;
+                -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.07);
+                box-shadow: inset 0 1px 2px rgba(0,0,0,.07);
+                padding-top: 2px;
+            }
+            input{
+                width: 100%;
+                overflow: hidden;
+                height: 21px;
+            }
+            i{
+                display: block;
+                position: absolute;
+                right: 3px;
+                top: 7px;
+            }
+        }
+        .map_canvas {
+            width: 100%;
+            height: 220px;
+        }
+    }
+}
+
+#addtag{
+    .quickfield_form_row{
+        &{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-right: 5%;
+        }
+        .col-label,.col-field{
+            float: none;
+            width: auto;
+        }
+        .col-label{
+            &{
+                margin-bottom: 2px;
+            }
+            label{
+                color: #23282d;
+            }
+        }
+
+    } 
+}
+#edittag{
+    .quickfield_form_row{
+        &{
+            padding-right: 5%;
+
+        }
+
+        &>td{
+            padding-right: 5%;
+
+            &>input[type=text], 
+            &>input[type=password], 
+            &>input[type=email], 
+            &>input[type=number], 
+            &>input[type=search], 
+            &>input[type=tel], 
+            &>input[type=url], 
+            &>textarea{
+                width: 100%;
+            }
+        }
+    }
+}
+
+.quickfield_widget_row{
+    &{
+        margin: 1em 0
+    }
+    .col-label{
+        label{
+            font-size: 13px;
+            line-height: 1.5;
+            display: block;
+            margin-bottom: 2px;
+        }
+    }
+    .col-field{
+        select{
+            width: 100%;
+        }
+
+    }
+    .description{
+        padding: 0!important;
+        font-style: italic;
+        font-size: 12px
+    }
+
+    .quickfield-checkboxes,
+    .quickfield-radios{
+        padding: 10px;
+        margin: 5px 0px;
+        background: #f3f3f3;
+        border-radius: 3px;
+        box-shadow: 0px 1px 4px rgba(0,0,0,.1) inset;
+    }
+
+    .quickfield-image_background .placeholder{
+        font-size: 12px;
+        a{
+            display: block;
+        }
+    }
+
+    .quickfield-link{
+        font-size: 12px;
+    }
+
+    .quickfield-image_picker{
+        .image_list li,.add_images{
+            width: 76px;
+            height: 76px;
+            outline: none;
+        }
+    }
+}
+
+.customize-control{
+    .quickfield-icon_picker{
+        .icons-selector{
+            .selector-popup{
+                width: 257px;
+            }
+            .fip-box{
+                width: 55px
+            }
+        }
+    }
+    select{
+        width: 100%;
+    }
+    
+}
+
+#advanced-sortables{
+    .quickfield-image_background{
+        width: 100%;
+    }
+}

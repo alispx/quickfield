@@ -1,0 +1,284 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-18 15:42+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: includes/class-qf-metaboxes.php:48 includes/class-qf-term-meta.php:47
+msgid "Quick Field Metabox"
+msgstr ""
+
+#: sample/customizer.php:22
+msgid "QUICKFIELD PANEL"
+msgstr ""
+
+#: sample/customizer.php:31
+msgid "SECTION I"
+msgstr ""
+
+#: sample/customizer.php:41 sample/customizer.php:63 sample/customizer.php:80 
+#: sample/customizer.php:109
+msgid "Text Area"
+msgstr ""
+
+#: sample/customizer.php:53
+msgid "SECTION II"
+msgstr ""
+
+#: sample/customizer.php:70
+msgid "SECTION III"
+msgstr ""
+
+#: sample/customizer.php:92
+msgid "SECTION IV"
+msgstr ""
+
+#: sample/customizer.php:115
+msgid "Single Checkbox"
+msgstr ""
+
+#: sample/customizer.php:125
+msgid "Check list"
+msgstr ""
+
+#: sample/customizer.php:129 sample/customizer.php:180 
+#: sample/customizer.php:194 sample/customizer.php:215 
+#: sample/customizer.php:227 sample/post-meta.php:39 sample/post-meta.php:53 
+#: sample/post-meta.php:76 sample/post-meta.php:90
+msgid "Donna Delgado"
+msgstr ""
+
+#: sample/customizer.php:130 sample/customizer.php:181 
+#: sample/customizer.php:195 sample/customizer.php:216 
+#: sample/customizer.php:228 sample/post-meta.php:40 sample/post-meta.php:54 
+#: sample/post-meta.php:77 sample/post-meta.php:91
+msgid "Eric Austin"
+msgstr ""
+
+#: sample/customizer.php:131 sample/customizer.php:182 
+#: sample/customizer.php:196 sample/customizer.php:217 
+#: sample/customizer.php:229 sample/post-meta.php:41 sample/post-meta.php:55 
+#: sample/post-meta.php:78 sample/post-meta.php:92
+msgid "Charles Wheeler"
+msgstr ""
+
+#: sample/customizer.php:132 sample/customizer.php:183 
+#: sample/customizer.php:197 sample/customizer.php:218 
+#: sample/customizer.php:230 sample/post-meta.php:42 sample/post-meta.php:56 
+#: sample/post-meta.php:79 sample/post-meta.php:93
+msgid "Anthony Perkins"
+msgstr ""
+
+#: sample/customizer.php:159
+msgid "QUICKFIELD CONTROLS"
+msgstr ""
+
+#: sample/customizer.php:164 sample/post-meta.php:21
+msgid "Text field:"
+msgstr ""
+
+#: sample/customizer.php:170 sample/post-meta.php:28
+msgid "Text Area:"
+msgstr ""
+
+#: sample/customizer.php:176 sample/post-meta.php:35
+msgid "Select:"
+msgstr ""
+
+#: sample/customizer.php:178 sample/post-meta.php:37
+msgid "A short description for Select box"
+msgstr ""
+
+#: sample/customizer.php:189 sample/post-meta.php:48
+msgid "Select multiple:"
+msgstr ""
+
+#: sample/customizer.php:190 sample/post-meta.php:49
+msgid "A short description for Select Multiple"
+msgstr ""
+
+#: sample/customizer.php:203
+msgid "Checkbox"
+msgstr ""
+
+#: sample/customizer.php:210 sample/post-meta.php:70
+msgid "Checkbox multiple:"
+msgstr ""
+
+#: sample/customizer.php:224 sample/post-meta.php:86
+msgid "Radio multiple:"
+msgstr ""
+
+#: sample/customizer.php:236
+msgid "Color Picker:"
+msgstr ""
+
+#: sample/customizer.php:242 sample/post-meta.php:154
+msgid "Icon Picker"
+msgstr ""
+
+#: sample/customizer.php:247 sample/post-meta.php:108
+msgid "Single Image:"
+msgstr ""
+
+#: sample/customizer.php:248 sample/post-meta.php:109
+msgid "A short description for Image Picker"
+msgstr ""
+
+#: sample/customizer.php:253
+msgid "Cropped Image:"
+msgstr ""
+
+#: sample/customizer.php:258
+msgid "Upload Field:"
+msgstr ""
+
+#: sample/post-meta.php:23
+msgid "A short description for Text Field"
+msgstr ""
+
+#: sample/post-meta.php:30
+msgid "A short description for Text Area"
+msgstr ""
+
+#: sample/post-meta.php:62
+msgid "Checkbox:"
+msgstr ""
+
+#: sample/post-meta.php:64
+msgid "A short description for single Checkbox"
+msgstr ""
+
+#: sample/post-meta.php:81
+msgid "A short description for Checkbox multiple"
+msgstr ""
+
+#: sample/post-meta.php:95
+msgid "Checkbox multiple description"
+msgstr ""
+
+#: sample/post-meta.php:100
+msgid "Color:"
+msgstr ""
+
+#: sample/post-meta.php:102
+msgid "A short description for Color Picker"
+msgstr ""
+
+#: sample/post-meta.php:115
+msgid "Multi Image:"
+msgstr ""
+
+#: sample/post-meta.php:116
+msgid "A short description for Image Picker with multiple is true"
+msgstr ""
+
+#: sample/post-meta.php:122
+msgid "Background Image:"
+msgstr ""
+
+#: sample/post-meta.php:123
+msgid "Suitable for image background."
+msgstr ""
+
+#: sample/post-meta.php:129
+msgid "Image Inline:"
+msgstr ""
+
+#: sample/post-meta.php:130
+msgid "This is a demo for sidebar layout."
+msgstr ""
+
+#: sample/post-meta.php:142
+msgid "Image Vertical:"
+msgstr ""
+
+#: sample/post-meta.php:143
+msgid "This is a demo for vertical image options."
+msgstr ""
+
+#: sample/post-meta.php:155
+msgid "A short description"
+msgstr ""
+
+#: sample/post-meta.php:160
+msgid "Custom Link"
+msgstr ""
+
+#: sample/post-meta.php:161
+msgid "We have a custom Link very friendly and easy to use."
+msgstr ""
+
+#: sample/post-meta.php:167
+msgid "Search map location"
+msgstr ""
+
+#: sample/post-meta.php:168
+msgid ""
+"Drag the pin to manually set listing coordinates. Now very easy to save a "
+"latlng and zoom settings from user. "
+msgstr ""
+
+#: sample/post-meta.php:182
+msgid "Metabox"
+msgstr ""
+
+#: includes/admin-fields/field_image_background.php:47
+msgid "No image selected"
+msgstr ""
+
+#: includes/admin-fields/field_image_background.php:47
+msgid "Set background image"
+msgstr ""
+
+#: includes/admin-fields/field_image_background.php:49 
+#: includes/admin-fields/field_image_picker.php:48
+msgid "Remove"
+msgstr ""
+
+#: includes/admin-fields/field_image_picker.php:57 
+#: includes/admin-fields/field_image_picker.php:57
+msgid "Add images"
+msgstr ""
+
+#: includes/admin-fields/field_link.php:38
+msgid "Select URL"
+msgstr ""
+
+#: includes/admin-fields/field_link.php:39
+msgid "Title:"
+msgstr ""
+
+#: includes/admin-fields/field_link.php:41
+msgid "URL:"
+msgstr ""
+
+#. Name of the plugin
+msgid "Quick Fields"
+msgstr ""
+
+#. Description of the plugin
+msgid "Quick Field Toolkit"
+msgstr ""
+
+#. URI of the plugin
+msgid "http://wordpress.org/plugins/quick-fields/"
+msgstr ""
+
+#. Author of the plugin
+msgid "ThemeBestStudio"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://themebeststudio.com/"
+msgstr ""

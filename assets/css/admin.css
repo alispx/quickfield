@@ -1,0 +1,443 @@
+.quickfield_form_row:after, .quickfield-image_picker .attached_images:after, .quickfield-image_picker .image_list:after, #side-sortables .quickfield-map:after,
+.widget-inside .quickfield-map:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.quickfield-image_picker .image_list li .remove, .quickfield-image_background .attachment-media-view .remove {
+  background: url(../images/remove.png) center center no-repeat;
+  width: 22px;
+  height: 22px;
+  display: block;
+  position: absolute;
+}
+
+.quickfield-image_picker .image_list li .remove:hover, .quickfield-image_background .attachment-media-view .remove:hover {
+  opacity: .7;
+  filter: alpha(opacity=70);
+}
+
+.quickfield_form_row {
+  padding: 16px 0px 16px 0px;
+  border-top: 1px solid #f1f1f1;
+}
+
+.quickfield_form_row:first-of-type {
+  border-top: none;
+  padding-top: 10px;
+}
+
+.quickfield_form_row .col-label, .quickfield_form_row .col-field {
+  float: left;
+}
+
+.quickfield_form_row .col-label {
+  width: 25%;
+  color: #777;
+}
+
+.quickfield_form_row .col-field {
+  width: 75%;
+}
+
+.quickfield_form_row .description {
+  display: block;
+  color: #666;
+  font-size: 13px;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.quickfield_form_row .quickfield-checkboxes, .quickfield_form_row .quickfield-radios {
+  padding: 0;
+  margin: 0;
+}
+
+.quickfield_form_row .quickfield-checkboxes li, .quickfield_form_row .quickfield-radios li {
+  list-style: none;
+  display: block;
+}
+
+.quickfield_form_row .quickfield-checkboxes li span, .quickfield_form_row .quickfield-radios li span {
+  margin-left: 2px;
+}
+
+.quickfield_form_row .quickfield-checkboxes.inline li, .quickfield_form_row .quickfield-radios.inline li {
+  display: inline;
+  margin-right: 15px;
+}
+
+.quickfield-image_picker .image_list {
+  margin: 0;
+  padding: 0;
+  cursor: move;
+  float: left;
+}
+
+.quickfield-image_picker .image_list li {
+  position: relative;
+  background: #F5F5F5;
+  padding: 0;
+  float: left;
+  margin: 0 5px 5px 0;
+  height: 80px;
+  width: 80px;
+  line-height: 75px;
+  text-align: center;
+  border: 1px solid #DFDFDF;
+  overflow: hidden;
+}
+
+.quickfield-image_picker .image_list li .inner {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.quickfield-image_picker .image_list li .remove {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.quickfield-image_picker .image_list li img {
+  max-height: 80px;
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  height: auto;
+}
+
+.quickfield-image_picker .add_images {
+  color: #C8C8C8;
+  border-color: #C8C8C8;
+  text-decoration: none;
+  margin-top: 0;
+  display: block;
+  float: left;
+  height: 80px;
+  width: 80px;
+  background: url(../images/add.png) center center no-repeat #F5F5F5;
+  border: 1px solid #DFDFDF;
+  font-size: 0;
+}
+
+.quickfield-image_picker .add_images:hover {
+  color: #C8C8C8;
+  border-color: #C8C8C8;
+  text-decoration: none;
+}
+
+.quickfield-image_background {
+  width: 600px;
+  max-width: 100%;
+}
+
+.quickfield-image_background .attachment-media-view {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+
+.quickfield-image_background .attachment-media-view .remove {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.quickfield-image_background .placeholder {
+  width: 100%;
+  position: relative;
+  text-align: center;
+  cursor: default;
+  border: 1px dashed #b4b9be;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 40px 0;
+  line-height: 20px;
+  font-size: 14px;
+  background-color: #fbfbfb;
+}
+
+.quickfield-image_background .added .placeholder {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.quickfield-image_background .added .remove {
+  display: block;
+}
+
+.quickfield-image_background .button {
+  float: right;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.quickfield-image_select {
+  margin: -6px 0 0 0;
+  padding: 0;
+}
+
+.quickfield-image_select label {
+  display: inline-block;
+  margin-right: 6px;
+  margin-top: 6px;
+}
+
+.quickfield-image_select label input {
+  display: none;
+}
+
+.quickfield-image_select label span {
+  display: block;
+  -webkit-box-shadow: inset 0 0 0 0px #fff,inset 0 0 0 1px #DFDFDF;
+  box-shadow: inset 0 0 0 0px #fff,inset 0 0 0 1px #DFDFDF;
+  padding: 3px;
+}
+
+.quickfield-image_select label input[type="radio"]:checked + span {
+  -webkit-box-shadow: inset 0 0 0 0px #fff,inset 0 0 0 3px #0073aa;
+  box-shadow: inset 0 0 0 0px #fff,inset 0 0 0 3px #0073aa;
+}
+
+.quickfield-image_select label img {
+  display: block;
+}
+
+.quickfield-image_select label:hover span {
+  -webkit-box-shadow: inset 0 0 0 0px #fff,inset 0 0 0 1px #0073aa;
+  box-shadow: inset 0 0 0 0px #fff,inset 0 0 0 1px #0073aa;
+}
+
+.quickfield-icon_picker .icons-selector .selector-search i {
+  top: 12px;
+}
+
+.quickfield-link {
+  color: #666;
+}
+
+.quickfield-link .link_label {
+  font-weight: 700;
+  margin-left: 10px;
+  display: inline-block;
+  line-height: 28px;
+  color: #333;
+}
+
+.quickfield-link .url-label {
+  color: #0073aa;
+}
+
+.quickfield-map {
+  position: relative;
+}
+
+.quickfield-map .map_search {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fff;
+  padding: 3px;
+  border-radius: 3px;
+  opacity: 1;
+  z-index: 999;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.quickfield-map .map_search input {
+  width: 260px;
+  max-width: 100%;
+  border: none;
+  box-shadow: none;
+  border-right: 1px solid #eee;
+  background: transparent;
+}
+
+.quickfield-map .map_search i {
+  color: #333;
+  font-size: 14px;
+  margin: 0px 7px 0px 5px;
+  position: relative;
+  top: -1px;
+}
+
+.quickfield-map .map_canvas {
+  height: 350px;
+  background-color: #ccc;
+}
+
+#side-sortables .quickfield_form_row,
+.widget-inside .quickfield_form_row {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#side-sortables .quickfield_form_row .col-label, #side-sortables .quickfield_form_row .col-field,
+.widget-inside .quickfield_form_row .col-label,
+.widget-inside .quickfield_form_row .col-field {
+  float: none;
+  width: auto;
+}
+
+#side-sortables .quickfield_form_row .col-label,
+.widget-inside .quickfield_form_row .col-label {
+  margin-bottom: 5px;
+}
+
+#side-sortables .quickfield_form_row .col-label label,
+.widget-inside .quickfield_form_row .col-label label {
+  font-weight: 500;
+  color: #333;
+}
+
+#side-sortables .quickfield-select,
+.widget-inside .quickfield-select {
+  display: block;
+  width: 100%;
+}
+
+#side-sortables .quickfield-map .map_search,
+.widget-inside .quickfield-map .map_search {
+  position: initial;
+  border: 1px solid #ddd;
+  padding-right: 32px;
+  margin-bottom: 10px;
+  border-radius: 0;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
+  padding-top: 2px;
+}
+
+#side-sortables .quickfield-map .map_search input,
+.widget-inside .quickfield-map .map_search input {
+  width: 100%;
+  overflow: hidden;
+  height: 21px;
+}
+
+#side-sortables .quickfield-map .map_search i,
+.widget-inside .quickfield-map .map_search i {
+  display: block;
+  position: absolute;
+  right: 3px;
+  top: 7px;
+}
+
+#side-sortables .quickfield-map .map_canvas,
+.widget-inside .quickfield-map .map_canvas {
+  width: 100%;
+  height: 220px;
+}
+
+#addtag .quickfield_form_row {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 5%;
+}
+
+#addtag .quickfield_form_row .col-label, #addtag .quickfield_form_row .col-field {
+  float: none;
+  width: auto;
+}
+
+#addtag .quickfield_form_row .col-label {
+  margin-bottom: 2px;
+}
+
+#addtag .quickfield_form_row .col-label label {
+  color: #23282d;
+}
+
+#edittag .quickfield_form_row {
+  padding-right: 5%;
+}
+
+#edittag .quickfield_form_row > td {
+  padding-right: 5%;
+}
+
+#edittag .quickfield_form_row > td > input[type=text],
+#edittag .quickfield_form_row > td > input[type=password],
+#edittag .quickfield_form_row > td > input[type=email],
+#edittag .quickfield_form_row > td > input[type=number],
+#edittag .quickfield_form_row > td > input[type=search],
+#edittag .quickfield_form_row > td > input[type=tel],
+#edittag .quickfield_form_row > td > input[type=url],
+#edittag .quickfield_form_row > td > textarea {
+  width: 100%;
+}
+
+.quickfield_widget_row {
+  margin: 1em 0;
+}
+
+.quickfield_widget_row .col-label label {
+  font-size: 13px;
+  line-height: 1.5;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.quickfield_widget_row .col-field select {
+  width: 100%;
+}
+
+.quickfield_widget_row .description {
+  padding: 0 !important;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.quickfield_widget_row .quickfield-checkboxes,
+.quickfield_widget_row .quickfield-radios {
+  padding: 10px;
+  margin: 5px 0px;
+  background: #f3f3f3;
+  border-radius: 3px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1) inset;
+}
+
+.quickfield_widget_row .quickfield-image_background .placeholder {
+  font-size: 12px;
+}
+
+.quickfield_widget_row .quickfield-image_background .placeholder a {
+  display: block;
+}
+
+.quickfield_widget_row .quickfield-link {
+  font-size: 12px;
+}
+
+.quickfield_widget_row .quickfield-image_picker .image_list li, .quickfield_widget_row .quickfield-image_picker .add_images {
+  width: 76px;
+  height: 76px;
+  outline: none;
+}
+
+.customize-control .quickfield-icon_picker .icons-selector .selector-popup {
+  width: 257px;
+}
+
+.customize-control .quickfield-icon_picker .icons-selector .fip-box {
+  width: 55px;
+}
+
+.customize-control select {
+  width: 100%;
+}
+
+#advanced-sortables .quickfield-image_background {
+  width: 100%;
+}
