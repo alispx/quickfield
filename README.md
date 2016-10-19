@@ -40,6 +40,15 @@ Simply install as a normal WordPress plugin and activate.
 
 If you want to see demo, just include quickfield/sample/sample.php file in plugin
 
+## Frequently Asked Questions ##
+
+### What does this plugin do? ###
+This is a toolkit helps you easy to create Panel, Section, Fields in Customizer with a simple declare syntax. you can also use the syntax to build Widget, Post, Custom Post Metabox, Term meta.  
+
+### Does this plugin change the default WordPress API? ###  
+No, Quickfield uses and extends the default WordPress methods and does not replace anything.   
+
+
 ## Changelog ##
 
 Oct 19, 2016
