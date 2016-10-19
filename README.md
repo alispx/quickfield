@@ -1,6 +1,5 @@
 # Quickfield #
 
-**Donate link: **  
 **Contributors:** vutuan.sw  
 **Tags:** customizer,options framework, theme, mods, toolkit, metabox, term meta  
 **Requires at least:** 4.4  
