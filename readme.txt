@@ -62,3 +62,6 @@ No, Quickfield uses and extends the default WordPress methods and does not repla
 Oct 19, 2016
 
 * Initial version
+* 1.0.1
+  * - Add Datetime field
+  * - Add Repeater field
