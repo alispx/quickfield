@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Helper functions
  *
@@ -8,7 +9,6 @@
  * @license   GPLv2 or later
  * @version   1.0.0
  */
-
 
 /**
  * Parse string like "title:Quickfield is useful|author:vutuansw" to array('title' => 'Quickfield is useful', 'author' => 'vutuansw')
@@ -32,4 +32,15 @@ function quickfield_parse_multi_attribute( $value, $default = array() ) {
 	}
 
 	return $result;
+}
+
+function quickfield_init( $func ) {
+	/**
+	 * Hook to post screen
+	 */
+	if ( is_admin() ) {
+
+		add_action( 'load-post.php', $func );
+		add_action( 'load-post-new.php', $func );
+	}
 }

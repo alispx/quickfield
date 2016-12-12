@@ -3,8 +3,8 @@ Donate link:
 Contributors: vutuansw
 Tags: customizer,options framework, theme, mods, toolkit, metabox, term meta
 Requires at least: 4.4
-Tested up to: 4.6
-Stable tag: 1.0.0
+Tested up to: 4.7
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,20 +18,21 @@ Quickfield uses and extends the default WordPress methods and does not replace t
 
 = Fields Types =
 
-* Image Picker/Gallery (Widget,Metabox,Term Meta, Customizer)
-* Image Background (Widget,Metabox,Term Meta)
-* Image Cropped (Customizer)
-* Image Select (Widget,Metabox,Term Meta,Customizer)
-* Icon Picker (Widget,Metabox,Term Meta,Customizer)
-* Color Picker (Widget,Metabox,Term Meta,Customizer)
-* Map Search (Widget,Metabox,Term Meta)
-* Link (Widget,Metabox,Term Meta)
-* Radio (Widget,Metabox,Term Meta,Customizer)
-* Select/Select multiple (Widget,Metabox,Term Meta,Customizer)
-* Checkbox/Checkbox multiple (Widget,Metabox,Term Meta,Customizer)
-* Radio (Widget,Metabox,Term Meta,Customizer)
-* Text (Widget,Metabox,Term Meta,Customizer)
-* Textarea (Widget,Metabox,Term Meta,Customizer)
+* Image Picker/Gallery 
+* Image Cropped
+* Image Select (Radio Images)
+* Icon Picker
+* Color Picker
+* Map Search
+* Link
+* Radio
+* Select/Select multiple
+* Checkbox/Checkbox multiple
+* Radio
+* Text
+* Textarea
+* Datetime
+* Repeater
 *
 
 == Installation ==

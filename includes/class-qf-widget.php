@@ -154,7 +154,6 @@ abstract class Qf_Widget extends WP_Widget {
 	 * @return array
 	 */
 	public function update( $new_instance, $old_instance ) {
-
 		$instance = $old_instance;
 
 		if ( empty( $this->fields ) ) {
@@ -170,21 +169,23 @@ abstract class Qf_Widget extends WP_Widget {
 
 			$value = '';
 
+			$input_value = $new_instance[$field['name']];
+			
 			if ( isset( $field['multiple'] ) && $field['multiple'] ) {
-
-				$value = maybe_unserialize( $new_instance[$field['name']] );
+				$value = maybe_unserialize( $input_value );
 			} elseif ( $field['type'] == 'checkbox' ) {
 
-				$value = !empty( $new_instance[$field['name']] ) ? 1 : 0;
+				$value = !empty( $input_value ) ? 1 : 0;
 			} elseif ( $field['type'] == 'link' ) {
 
-				$value = strip_tags( $new_instance[$field['name']] );
+				$value = strip_tags( $input_value );
 			} elseif ( $field['type'] == 'textarea' ) {
 
-				$value = wp_kses( trim( wp_unslash( $new_instance[$field['name']] ) ), wp_kses_allowed_html( 'post' ) );
+				$value = wp_kses( trim( wp_unslash( $input_value ) ), wp_kses_allowed_html( 'post' ) );
+			} elseif ( $field['type'] == 'repeater' && !empty( $input_value ) ) {
+				$value = strip_tags( $input_value );
 			} else {
-
-				$value = sanitize_text_field( $new_instance[$field['name']] );
+				$value = sanitize_text_field( $input_value );
 			}
 
 			/**
@@ -197,7 +198,7 @@ abstract class Qf_Widget extends WP_Widget {
 			 */
 			$instance[$field['name']] = $value;
 		}
-
+		
 		$this->flush_widget_cache();
 
 		return $instance;
@@ -225,7 +226,7 @@ abstract class Qf_Widget extends WP_Widget {
 		if ( empty( $this->fields ) ) {
 			return;
 		}
-
+		
 		global $quickfield_registered_fields;
 
 		if ( empty( $quickfield_registered_fields ) ) {
@@ -253,9 +254,16 @@ abstract class Qf_Widget extends WP_Widget {
 			 */
 			$value = isset( $instance[$field['name']] ) ? $instance[$field['name']] : $default_value;
 
+
+			$field['_name'] = $field['name'];
+
+			$field['_id'] = $field['name'];
+
 			$field['id'] = $this->get_field_id( $field['name'] );
 
 			$field['name'] = $this->get_field_name( $field['name'] );
+
+			$field['widget_support'] = true;
 
 			/**
 			 * Add field type to global array
@@ -275,8 +283,8 @@ abstract class Qf_Widget extends WP_Widget {
 
 				$output.= sprintf( $this->field_wrapper, $lable, call_user_func( "quickfield_form_{$field['type']}", $field, $value ) . $desc );
 			} else if ( has_filter( "quickfield_form_{$field['type']}" ) ) {
-
-				$field_output = apply_filters( "quickfield_form_{$field['type']}", '', $field, $value, $this->field_wrapper );
+				$field['value'] = $value;
+				$field_output = apply_filters( "quickfield_form_{$field['type']}", '', $field);
 				$output.= sprintf( $this->field_wrapper, $lable, $field_output . $desc );
 			}
 		}

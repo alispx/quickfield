@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Default Fields
  *
@@ -23,11 +24,19 @@ if ( !defined( 'ABSPATH' ) ) {
  */
 function quickfield_form_textfield( $settings, $value ) {
 
-	$value = htmlspecialchars( $value );
+	$attrs = array();
 
-	$id = isset( $settings['id'] ) ? $settings['id'] : $settings['name'];
+	if ( !empty( $settings['name'] ) ) {
+		$attrs[] = 'name="' . $settings['name'] . '"';
+	}
 
-	return sprintf( '<input type="text" name="%1$s" id="%2$s" class="quickfield-textfield widefat %2$s %3$s" value="%4$s"/>', $settings['name'], $id, $settings['type'], $value );
+	if ( !empty( $settings['id'] ) ) {
+		$attrs[] = 'id="' . $settings['id'] . '"';
+	}
+
+	$attrs[] = 'data-type="' . $settings['type'] . '"';
+
+	return sprintf( '<input type="text" class="quickfield-field quickfield-textfield widefat qf_value" value="%s" %s/>', htmlspecialchars( $value ), implode( ' ', $attrs ) );
 }
 
 /**
@@ -41,9 +50,19 @@ function quickfield_form_textfield( $settings, $value ) {
  */
 function quickfield_form_textarea( $settings, $value ) {
 
-	$id = isset( $settings['id'] ) ? $settings['id'] : $settings['name'];
+	$attrs = array();
 
-	return sprintf( '<textarea type="text" name="%1$s"  id="%2$s" class="quickfield-textarea widefat %2$s %3$s">%4$s</textarea>', $settings['name'], $id, $settings['type'], esc_textarea( $value ) );
+	if ( !empty( $settings['name'] ) ) {
+		$attrs[] = 'name="' . $settings['name'] . '"';
+	}
+
+	if ( !empty( $settings['id'] ) ) {
+		$attrs[] = 'id="' . $settings['id'] . '"';
+	}
+
+	$attrs[] = 'data-type="' . $settings['type'] . '"';
+
+	return sprintf( '<textarea class="quickfield-field quickfield-textarea widefat qf_value" %s>%s</textarea>', implode( ' ', $attrs ), esc_textarea( $value ) );
 }
 
 /**
@@ -57,11 +76,28 @@ function quickfield_form_textarea( $settings, $value ) {
  */
 function quickfield_form_checkbox( $settings, $value = '' ) {
 
-	$name = isset( $settings['name'] ) ? $settings['name'] : '';
+	$attrs = array();
 
-	$id = isset( $settings['id'] ) ? $settings['id'] : $name;
+	if ( !empty( $settings['name'] ) ) {
+		$attrs[] = 'name="' . $settings['name'] . '"';
+	}
 
-	$attr = isset( $settings['attr'] ) ? $settings['attr'] : '';
+	if ( !empty( $settings['id'] ) ) {
+		$attrs[] = 'id="' . $settings['id'] . '"';
+	}
+
+	$attrs[] = 'data-type="' . $settings['type'] . '"';
+
+	/**
+	 * Support Customizer
+	 */
+	if ( !empty( $settings['customize_link'] ) ) {
+		$attrs[] = $settings['customize_link'];
+	}
+
+	if ( is_array( $value ) ) {
+		$value = implode( ',', $value );
+	}
 
 	$multiple = isset( $settings['multiple'] ) && $settings['multiple'] ? 1 : 0;
 
@@ -73,30 +109,27 @@ function quickfield_form_checkbox( $settings, $value = '' ) {
 
 			$inline = isset( $settings['display_inline'] ) && absint( $settings['display_inline'] ) ? 'inline' : '';
 
-			$output.= sprintf( '<ul class="quickfield-checkboxes %s">', $inline );
+			$arr_values = !empty( $value ) ? explode( ',', sanitize_text_field( $value ) ) : array();
 
-			if ( !empty( $name ) ) {
-				$name.='[]';
-			}
+			$output.=sprintf( '<input type="hidden" class="qf_value" value="%s" %s/>', $value, implode( ' ', $attrs ) );
+
+			$output.= sprintf( '<ul class="quickfield-field quickfield-checkboxes %s">', $inline );
 
 			foreach ( $settings['options'] as $checkbox_key => $checkbox_value ) {
 
-				if ( is_array( $value ) ) {
-					$checked = in_array( $checkbox_key, $value ) ? 'checked' : '';
-				} else {
-					$checked = $checkbox_key === $value ? 'checked' : '';
-				}
+				$checked = in_array( $checkbox_key, $arr_values ) ? 'checked' : '';
 
-				$output.=sprintf( '<li><label><input %s type="checkbox" name="%s" value="%s"/><span>%s</span></label></li>', $checked, $name, $checkbox_key, $checkbox_value );
+				$output.=sprintf( '<li><label><input %s type="checkbox" value="%s"/><span>%s</span></label></li>', $checked, $checkbox_key, $checkbox_value );
 			}
 
 			$output.= '</ul>';
 		}
 	} else {
 
-		$checked = absint( $value ) ? 'checked' : '';
-
-		$output.=sprintf( '<input %3$s type="checkbox" value="1" name="%1$s" id="%5$s" class="quickfield-checkbox %1$s %2$s" %4$s/>', $name, $settings['type'], $checked, $attr, $id );
+		if ( $value ) {
+			$attrs[] = 'checked';
+		}
+		$output.=sprintf( '<input type="checkbox" value="1" class="quickfield-field quickfield-checkbox qf_value" %s/>', implode( ' ', $attrs ) );
 	}
 
 	return $output;
@@ -115,17 +148,42 @@ function quickfield_form_select( $settings, $value = '' ) {
 
 	$multiple = isset( $settings['multiple'] ) && $settings['multiple'] ? 'multiple' : '';
 
-	$name = isset( $settings['name'] ) ? $settings['name'] : '';
+	$attrs = array();
 
-	$id = isset( $settings['id'] ) ? $settings['id'] : $name;
-
-	$attr = isset( $settings['attr'] ) ? $settings['attr'] : '';
-
-	if ( !empty( $multiple ) && !empty( $name ) ) {
-		$name.='[]';
+	if ( !empty( $settings['name'] ) ) {
+		$attrs[] = 'name="' . $settings['name'] . '"';
 	}
 
-	$output = sprintf( '<select %1$s id="%2$s" name="%3$s" %4$s class="quickfield-select">', $attr, $id, $name, $multiple );
+	if ( !empty( $settings['id'] ) ) {
+		$attrs[] = 'id="' . $settings['id'] . '"';
+	}
+	
+	$attrs[] = 'data-type="' . $settings['type'] . '"';
+
+	/**
+	 * Support Customizer
+	 */
+	if ( !empty( $settings['customize_link'] ) ) {
+		$attrs[] = $settings['customize_link'];
+	}
+
+	$css_class = 'quickfield-field quickfield-select quickfield-select-multiple';
+	if ( !empty( $settings['el_class'] ) ) {
+		$css_class.=' ' . $settings['el_class'];
+	}
+
+	if ( is_array( $value ) ) {
+		$value = implode( ',', $value );
+	}
+
+	$output = '';
+	if ( !empty( $multiple ) ) {
+		$output.=sprintf( '<input type="hidden" class="qf_value" value="%s" %s/>', esc_attr( $value ), implode( ' ', $attrs ) );
+		$output.= '<select multiple="" class="' . $css_class . '">';
+		$value = !empty( $value ) ? explode( ',', $value ) : array();
+	} else {
+		$output.= sprintf( '<select class="quickfield-field quickfield-select qf_value" %s>', implode( ' ', $attrs ) );
+	}
 
 	if ( is_array( $settings['options'] ) ) {
 		foreach ( $settings['options'] as $option_key => $option_value ) {
@@ -155,19 +213,32 @@ function quickfield_form_select( $settings, $value = '' ) {
  * @return string - html string.
  */
 function quickfield_form_radio( $settings, $value ) {
+
+	$attrs = array();
+
+	if ( !empty( $settings['name'] ) ) {
+		$attrs[] = 'name="' . $settings['name'] . '"';
+	}
+
+	if ( !empty( $settings['id'] ) ) {
+		$attrs[] = 'id="' . $settings['id'] . '"';
+	}
+
+	$attrs[] = 'data-type="' . $settings['type'] . '"';
+
 	$output = '';
 
 	if ( is_array( $settings['options'] ) ) {
 
 		$inline = isset( $settings['display_inline'] ) && absint( $settings['display_inline'] ) ? 'inline' : '';
 
-		$output.= sprintf( '<ul class="quickfield-radios %s">', $inline );
+		$output.= sprintf( '<ul class="quickfield-field quickfield-radios %s">', $inline );
 
 		foreach ( $settings['options'] as $radio_key => $radio_value ) {
 
 			$checked = $radio_key === $value ? 'checked' : '';
 
-			$output.=sprintf( '<li><label><input %s type="radio" name="%s" value="%s"/><span>%s</span></label></li>', $checked, $settings['name'], $radio_key, $radio_value );
+			$output.=sprintf( '<li><label><input class="qf_value" %s %s type="radio" value="%s"/><span>%s</span></label></li>', $checked, implode( ' ', $attrs ), $radio_key, $radio_value );
 		}
 
 		$output.= '</ul>';

@@ -8,7 +8,6 @@
  * @license   GPLv2 or later
  * @version   1.0.0
  */
-
 if ( !defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
@@ -25,7 +24,38 @@ if ( !defined( 'ABSPATH' ) ) {
 function quickfield_form_link( $settings, $value ) {
 	ob_start();
 
-	$id = isset( $settings['id'] ) ? $settings['id'] : $settings['name'];
+	/**
+	 * @var string Css Class
+	 */
+	$css_class = 'quickfield-field quickfield-link';
+
+	if ( !empty( $settings['el_class'] ) ) {
+		$css_class.=' ' . $settings['el_class'];
+	}
+
+
+	/**
+	 * @var array Attributes
+	 */
+	$attrs = array();
+
+	if ( !empty( $settings['name'] ) ) {
+		$attrs[] = 'name="' . $settings['name'] . '"';
+	}
+
+	if ( !empty( $settings['id'] ) ) {
+		$attrs[] = 'id="' . $settings['id'] . '"';
+	}
+
+	$attrs[] = 'data-type="' . $settings['type'] . '"';
+
+	/**
+	 * Support Customizer
+	 */
+	if ( !empty( $settings['customize_link'] ) ) {
+		$attrs[] = $settings['customize_link'];
+	}
+
 
 	$link = quickfield_build_link( $value );
 
@@ -33,17 +63,23 @@ function quickfield_form_link( $settings, $value ) {
 
 	$input_value = htmlentities( $value, ENT_QUOTES, 'utf-8' );
 	?>
-	<div class="quickfield-link" id="quickfield-link-<?php echo esc_attr( $id ) ?>">
-		<?php printf( '<input type="hidden" name="%1$s" id="%5$s" class="%5$s %2$s" value="%3$s" data-json="%4$s"/>', $settings['name'], $settings['type'], $input_value, $json_value, $id ); ?>
+	<div class="<?php echo esc_attr( $css_class ) ?>" id="quickfield-link-<?php echo esc_attr( uniqid() ) ?>">
+
+		<?php printf( '<input type="hidden" class="qf_value" value="%1$s" data-json="%2$s" %3$s/>', $input_value, $json_value, implode( ' ', $attrs ) ); ?>
+
 		<a href="#" class="button link_button"><?php echo esc_attr__( 'Select URL', 'quickfield' ) ?></a> 
-		<span class="link_label_title link_label"><?php echo esc_attr__( 'Title:', 'quickfield' ) ?></span> 
-		<span class="title-label"><?php echo isset( $link['title'] ) ? esc_attr( $link['title'] ) : ''; ?></span> 
-		<span class="link_label"><?php echo esc_attr__( 'URL:', 'quickfield' ) ?></span> 
-		<span class="url-label">
-			<?php
-			echo isset( $link['url'] ) ? esc_url( $link['url'] ) : '';
-			echo isset( $link['target'] ) ? ' ' . esc_attr( $link['target'] ) : '';
-			?> 
+		<span class="group_title">
+			<span class="link_label_title link_label"><?php echo esc_attr__( 'Link Text:', 'quickfield' ) ?></span> 
+			<span class="title-label"><?php echo isset( $link['title'] ) ? esc_attr( $link['title'] ) : ''; ?></span> 
+		</span>
+		<span class="group_url">
+			<span class="link_label"><?php echo esc_attr__( 'URL:', 'quickfield' ) ?></span> 
+			<span class="url-label">
+				<?php
+				echo isset( $link['url'] ) ? esc_url( $link['url'] ) : '';
+				echo isset( $link['target'] ) ? ' ' . esc_attr( $link['target'] ) : '';
+				?> 
+			</span>
 		</span>
 	</div>
 	<?php
@@ -64,7 +100,7 @@ function quickfield_build_link( $value ) {
 
 /**
  * Print link editor template
- * Link field need function to work
+ * Link field need a hidden textarea to work
  * 
  * @since 1.0.0
  * @return void

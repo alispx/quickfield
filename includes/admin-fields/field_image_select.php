@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Image Select
  * 
@@ -25,6 +26,18 @@ function quickfield_form_image_select( $settings, $value ) {
 
 	$output = '';
 
+	$attrs = array();
+
+	if ( !empty( $settings['name'] ) ) {
+		$attrs[] = 'name="' . $settings['name'] . '"';
+	}
+
+	if ( !empty( $settings['id'] ) ) {
+		$attrs[] = 'id="' . $settings['id'] . '"';
+	}
+
+	$attrs[] = 'data-type="' . $settings['type'] . '"';
+
 	if ( !isset( $settings['inline'] ) ) {
 		$settings['inline'] = 1;
 	}
@@ -33,13 +46,13 @@ function quickfield_form_image_select( $settings, $value ) {
 
 		$br = $settings['inline'] ? '' : '<br/>';
 
-		$output.= sprintf( '<div class="quickfield-image_select">' );
+		$output.= sprintf( '<div class="quickfield-field quickfield-image_select">' );
 
 		foreach ( $settings['options'] as $radio_key => $image_url ) {
 
 			$checked = $radio_key === $value ? 'checked' : '';
 
-			$output.=sprintf( '<label><input %3$s type="radio" name="%4$s" value="%1$s"/><span><img alt="%1$s" src="%2$s"/></span></label>', $radio_key, $image_url, $checked, $settings['name'] );
+			$output.=sprintf( '<label><input class="qf_value" type="radio" value="%1$s" %3$s %4$s/><span><img alt="%1$s" src="%2$s"/></span></label>', $radio_key, $image_url, $checked, implode( ' ', $attrs ) );
 			$output.=$br;
 		}
 

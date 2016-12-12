@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class Icon Picker Control
+ * Class Map Control
  *
- * @class     Qf_Customize_Icon_Picker_Control
+ * @class     Qf_Customize_Map_Control
  * @package   Quick_Field/Customize_Field
  * @category  Class
  * @author    vutuan.sw
@@ -13,11 +13,14 @@
 if ( class_exists( 'WP_Customize_Control' ) ):
 
 	/**
-	 * Qf_Customize_Icon_Picker_Control Class
+	 * Qf_Customize_Map_Control Class
 	 */
-	class Qf_Customize_Icon_Picker_Control extends WP_Customize_Control {
+	class Qf_Customize_Map_Control extends WP_Customize_Control {
 
-		public $type = 'qf_icon_picker';
+		/**
+		 * @var string Field type
+		 */
+		public $type = 'qf_map';
 
 		/**
 		 * Render control
@@ -29,12 +32,11 @@ if ( class_exists( 'WP_Customize_Control' ) ):
 
 			$args = array(
 				'type' => $this->type,
-				'customize_link' => $this->get_link(),
+				'customize_link' => $this->get_link()
 			);
 
-			echo quickfield_form_icon_picker( $args, $this->value() );
+			echo quickfield_form_map( $args, $this->value() );
 		}
 
 	}
-	
 endif;

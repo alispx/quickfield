@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Sample Widget
  *
@@ -16,24 +17,28 @@ class Qf_Example_Widget extends Qf_Widget {
 
 	public function __construct() {
 
+		$fields = quickfield_example_fields();
+
+		$repeater = array(
+			'name' => 'quickfield_repeater',
+			'type' => 'repeater',
+			'heading' => __( 'Repeater', 'quickfield' ),
+			'value' => '',
+			'desc' => '',
+			'fields' => $fields
+		);
+
+		$all = $fields;
+		$all[] = $repeater;
+
 		$this->widget_cssclass = 'quickfield_example_widget';
 		$this->widget_description = __( "Display the sample fields in the sidebar.", 'keplm' );
 		$this->widget_id = 'quickfield_example_widget';
 		$this->widget_name = __( 'QF Example Fields', 'keplm' );
-
+		$this->fields = $all;
 		parent::__construct();
 	}
-
-	/**
-	 * You should register fields in form function
-	 */
-	public function form( $instance ) {
-
-		$this->fields = quickfield_example_fields();
-
-		parent::form( $instance );
-	}
-
+	
 	/**
 	 * Widget output
 	 */

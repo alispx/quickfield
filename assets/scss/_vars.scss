@@ -1,0 +1,256 @@
+$primary_color:#0073aa;
+
+@mixin translate3d($value1,$value2,$value3){
+    -webkit-transform: translate3d($value1,$value2,$value3);
+    -moz-transform: translate3d($value1,$value2,$value3);
+    -o-transform: translate3d($value1,$value2,$value3);
+    -ms-transform: translate3d($value1,$value2,$value3);
+    transform: translate3d($value1,$value2,$value3);
+}
+@mixin translateY($value){
+    -webkit-transform: translateY($value);
+    -moz-transform: translateY($value);
+    -o-transform: translateY($value);
+    -ms-transform: translateY($value);
+    transform: translateY($value);
+}
+@mixin translateX($value){
+    -webkit-transform: translateX($value);
+    -moz-transform: translateX($value);
+    -o-transform: translateX($value);
+    -ms-transform: translateX($value);
+    transform: translateX($value);
+}
+@mixin translateZ($value) {
+    -webkit-transform: translateZ($value);
+    -moz-transform: translateZ($value);
+    -ms-transform: translateZ($value);
+    transform: translateZ($value);
+}
+@mixin transition($value){
+    -webkit-transition:$value;
+    -moz-transition:$value;
+    -o-transition:$value;
+    transition:$value;
+}
+
+@mixin scale($value){
+    -webkit-transform: scale($value);
+    -moz-transform: scale($value);
+    -ms-transform: scale($value);
+    transform: scale($value);
+}
+
+
+@mixin transform-style($value){
+    -webkit-transform-style: $value;
+    -moz-transform-style: $value;
+    -o-transform-style: $value;
+    -ms-transform-style: $value;
+    transform-style: $value;
+}
+@mixin transform-origin($value){
+    -webkit-transform-origin:$value;
+    -moz-transform-origin: $value;
+    -o-transform-origin: $value;
+    -ms-transform-origin: $value;
+    transform-origin: $value;
+}
+
+@mixin translate($value){
+    -webkit-transform:$value;
+    -moz-transform: $value;
+    -o-transform: $value;
+    -ms-transform:$value;
+    transform: $value;
+}
+@mixin bg_gradient2($value1,$value2){
+    background: -webkit-linear-gradient($value1,$value2);
+    background: -moz-linear-gradient($value1,$value2);
+    background: -o-linear-gradient($value1,$value2);
+    background: -ms-linear-gradient($value1,$value2);
+    background: linear-gradient($value1,$value2);
+}
+@mixin  bg_image($file){
+    background: url('../images/#{$file}') no-repeat;
+    background-size: 100% 100%;
+}
+
+@mixin image($file){
+    background: url('../images/#{$file}') no-repeat;
+}
+
+@mixin border-radius($value){
+    -o-border-radius: $value;
+    -moz-border-radius: $value;
+    -webkit-border-radius: $value;
+    border-radius: $value;
+}
+
+@mixin clearfix(){
+    display:block;
+    content: " ";
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+
+@mixin rotateY_translateZ($value1,$value2){
+    -webkit-transform: rotateY( $value1) translateZ($value2 );
+    -moz-transform: rotateY( $value1) translateZ($value2 );
+    -ms-transform: rotateY($value1) translateZ($value2 );
+    transform: rotateY($value1) translateZ($value2 );
+}
+@mixin translateZ_rotateY($value1,$value2){
+    -webkit-transform: translateZ(  $value1)  rotateY($value2 );
+    -moz-transform: translateZ(  $value1 )  rotateY( $value2 );
+    -ms-transform:  translateZ(  $value1)  rotateY( $value2 );
+    transform: translateZ(  $value1)  rotateY( $value2 );
+}
+@mixin rotate($value){
+    -webkit-transform: rotate($value );
+    -moz-transform: rotate( $value );
+    -ms-transform:rotate( $value );
+    transform:  rotate( $value );
+}
+@-webkit-keyframes rotato {
+    from {-webkit-transform: rotate(0deg);transform: rotate(0deg)}
+    to {-webkit-transform: rotate(360deg);transform: rotate(360deg)}
+}
+@keyframes rotato {
+    from {-webkit-transform: rotate(0deg);transform: rotate(0deg)}
+    to {-webkit-transform: rotate(360deg);transform: rotate(360deg)}
+}
+
+/* WebKit and Opera browsers */
+@-webkit-keyframes rotatoY {
+    from { -webkit-transform: rotateY(0deg);    }
+    to   { -webkit-transform: rotateY(-360deg); }
+}
+
+/* all other browsers */
+@keyframes rotatoY {
+    from {
+        -moz-transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+    to {
+        -moz-transform: rotateY(-360deg);
+        -ms-transform: rotateY(-360deg);
+        transform: rotateY(-360deg);
+    }
+}
+
+
+@-webkit-keyframes border_1_color {
+    0% {
+        background: #a9d917;
+    }
+    50% {
+        background: #F4FE43;
+    }
+    100%{
+        background: #01C1FA;
+    }
+}
+@keyframes border_1_color {
+    0% {
+        background: #a9d917;
+    }
+    50% {
+        background: #F4FE43;
+    }
+    100%{
+        background: #01C1FA;
+    }
+}
+
+@-webkit-keyframes border_2_color {
+    100%{
+        background: rgba(255,255,255,.6);
+    }
+}
+@keyframes border_2_color {
+    100%{
+        background: rgba(255,255,255,.6);
+    }
+}
+
+
+@-webkit-keyframes answer_color {
+    0% {
+        background: #35501A;
+    }
+    50% {
+        background: #22390B;
+    }
+    100%{
+        background: #19260C;
+    }
+}
+@keyframes answer_color {
+    0% {
+        background: #35501A;
+    }
+    50% {
+        background: #22390B;
+    }
+    100%{
+        background: #19260C;
+    }
+}
+
+@-webkit-keyframes loading {
+    0% { -webkit-transform:rotate(0deg) translateZ(0); 
+         transform:rotate(0deg) translateZ(0);
+    }
+    100% { -webkit-transform:rotate(360deg) translateZ(0); 
+           transform:rotate(360deg) translateZ(0);
+    }
+}
+@keyframes loading {
+    0% { -webkit-transform:rotate(0deg) translateZ(0); 
+         transform:rotate(0deg) translateZ(0);
+    }
+    100% { -webkit-transform:rotate(360deg) translateZ(0);
+           transform:rotate(360deg) translateZ(0);
+    }
+}
+
+
+@mixin placeholder-color($color){
+    ::-webkit-input-placeholder { /* WebKit browsers */
+        color:    $color;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color:    $color;
+        opacity:  1;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color:    $color;
+        opacity:  1;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+        color:    $color;
+    }
+}
+
+
+%clearfix{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+%remove_icon{
+    background: url(../images/remove.png) center center no-repeat;
+    width: 22px;
+    height: 22px;
+    display: block;
+    position: absolute;
+    &:hover{
+        opacity: .7;
+        filter: alpha(opacity=70);
+    }
+}

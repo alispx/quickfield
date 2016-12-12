@@ -8,7 +8,6 @@
  * @license   GPLv2 or later
  * @version   1.0.0
  */
-
 if ( !defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
@@ -24,11 +23,30 @@ if ( !defined( 'ABSPATH' ) ) {
  */
 function quickfield_form_icon_picker( $settings, $value = '' ) {
 
-	$name = isset( $settings['name'] ) ? $settings['name'] : '';
+	$attrs = array();
 
-	$id = isset( $settings['id'] ) ? $settings['id'] : $name;
+	$css_class = 'quickfield-field quickfield-icon_picker';
 
-	$attr = isset( $settings['attr'] ) ? $settings['attr'] : '';
+	if ( !empty( $settings['name'] ) ) {
+		$attrs[] = 'name="' . $settings['name'] . '"';
+	}
+
+	if ( !empty( $settings['id'] ) ) {
+		$attrs[] = 'id="' . $settings['id'] . '"';
+	}
+
+	if ( !empty( $settings['el_class'] ) ) {
+		$css_class.=' ' . $settings['el_class'];
+	}
+
+	$attrs[] = 'data-type="' . $settings['type'] . '"';
+
+	/**
+	 * Support Customizer
+	 */
+	if ( !empty( $settings['customize_link'] ) ) {
+		$attrs[] = $settings['customize_link'];
+	}
 
 	$source_font = isset( $settings['font'] ) ? $settings['font'] : 'fontawesome';
 
@@ -40,8 +58,8 @@ function quickfield_form_icon_picker( $settings, $value = '' ) {
 
 	ob_start();
 	?>
-	<div class="quickfield-icon_picker">
-		<select name="<?php echo esc_attr( $name ) ?>" id="<?php echo esc_attr( $id ) ?>" <?php print $attr ?>>
+	<div class="<?php echo esc_attr( $css_class ) ?>">
+		<select class="qf_value" <?php echo implode( ' ', $attrs ) ?>>
 			<?php
 			if ( !empty( $arr ) ) {
 

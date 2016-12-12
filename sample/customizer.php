@@ -240,6 +240,7 @@ function quickfield_customize_register( $wp_customize ) {
 				'name' => 'quickfield_icon_picker',
 				'type' => 'icon_picker',
 				'heading' => __( 'Icon Picker', 'quickfield' ),
+				'value' => ''
 			),
 			array(
 				'name' => 'quickfield_image',
@@ -257,9 +258,41 @@ function quickfield_customize_register( $wp_customize ) {
 				'type' => 'upload',
 				'heading' => __( 'Upload Field:', 'quickfield' ),
 			),
-			//Update later
+			array(
+				'name' => 'quickfield_map',
+				'type' => 'map',
+				'heading' => __( 'Google map:', 'quickfield' ),
+			),
+			array(
+				'name' => 'quickfield_link',
+				'type' => 'link',
+				'heading' => __( 'Enter a link:', 'quickfield' ),
+			),
+			array(
+				'name' => 'quickfield_datetime',
+				'type' => 'datetime',
+				'heading' => __( 'Datetime:', 'quickfield' ),
+				'options'=>array(
+					
+				)
+			),
+		//Update later
 		) )
 	);
+
+
+	$repeater_section = new Qf_Customize_Section( $wp_customize, array(
+		'id' => 'qf_repeater_section',
+		'heading' => esc_attr__( 'Repeater', 'quickfield' ),
+		'fields' => array(
+			array(
+				'name' => 'quickfield_repeater',
+				'type' => 'repeater',
+				'heading' => 'Demo Repeater',
+				'fields' => quickfield_example_fields()
+			)
+		)
+			) );
 }
 
 /**

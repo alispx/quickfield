@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Color Picker
  *
@@ -8,8 +9,6 @@
  * @license   GPLv2 or later
  * @version   1.0.0
  */
-
-
 if ( !defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
@@ -25,9 +24,20 @@ if ( !defined( 'ABSPATH' ) ) {
  */
 function quickfield_form_color_picker( $settings, $value ) {
 
-	$id = isset( $settings['id'] ) ? $settings['id'] : $settings['name'];
+	$attrs = array();
 
-	$value = htmlspecialchars( $value );
+	if ( !empty( $settings['name'] ) ) {
+		$attrs[] = 'name="' . $settings['name'] . '"';
+	}
 
-	return sprintf( '<input type="text" name="%1$s" id="%2$s" class="quickfield-color %2$s %3$s" value="%4$s" data-default-color="%4$s" />', $settings['name'], $id, $settings['type'], $value );
+	if ( !empty( $settings['id'] ) ) {
+		$attrs[] = 'id="' . $settings['id'] . '"';
+	}
+
+	$el_class = isset( $settings['el_class'] ) ? $settings['el_class'] : '';
+
+
+	$attrs[] = 'data-type="' . $settings['type'] . '"';
+
+	return sprintf( '<input type="text" class="quickfield-field quickfield-color qf_value %3$s" value="%1$s" data-default-color="%1$s" %2$s/>', htmlspecialchars( $value ), implode( ' ', $attrs ), esc_attr( $el_class ) );
 }

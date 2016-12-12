@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class Term Meta
  *
@@ -35,6 +36,14 @@ if ( !class_exists( 'Qf_Term_Meta' ) ) {
 		private $output;
 
 		/**
+		 * @access private
+		 * @var array Group fields
+		 */
+		private $group_fields = array();
+		private $field_add_wrapper;
+		private $field_edit_wrapper;
+
+		/**
 		 * Init
 		 */
 		public function __construct( $args = array() ) {
@@ -65,12 +74,8 @@ if ( !class_exists( 'Qf_Term_Meta' ) ) {
 
 			$term_id = isset( $_GET['tag_ID'] ) ? absint( $_GET['tag_ID'] ) : 0;
 
-
-			if ( $term_id ) {
-				$this->field_wrapper = apply_filters( 'quickfield_term_form_edit_field_wrapper', '<tr class="form-field term-group-wrap quickfield_form_row"><th scope="row">%1$s</th><td>%2$s</td></tr>' );
-			} else {
-				$this->field_wrapper = apply_filters( 'quickfield_term_form_add_field_wrapper', '<div class="quickfield_form_row"><div class="col-label">%1$s</div><div class="col-field">%2$s</div></div>' );
-			}
+			$this->field_edit_wrapper = apply_filters( 'quickfield_term_form_edit_field_wrapper', '<tr class="form-field term-group-wrap quickfield_form_row"><th scope="row">%1$s</th><td>%2$s</td></tr>' );
+			$this->field_add_wrapper = apply_filters( 'quickfield_term_form_add_field_wrapper', '<div class="quickfield_form_row"><div class="col-label">%1$s</div><div class="col-field">%2$s</div></div>' );
 
 			$this->output = $this->pre_output( $term_id );
 
@@ -151,34 +156,110 @@ if ( !class_exists( 'Qf_Term_Meta' ) ) {
 					$value = isset( $field['value'] ) ? $field['value'] : '';
 				}
 
+				$field['value'] = $value;
+
 				/**
 				 * Add field type to global array
 				 */
 				$quickfield_registered_fields[] = $field['type'];
 
-				/*
-				 * Print field
+				/**
+				 * Add field to group
+				 * @since 1.0.2
 				 */
+				$group = !empty( $field['group'] ) ? $field['group'] : '';
 
-				$required = isset( $field['required'] ) && absint( $field['required'] ) ? '<span>*</span>' : '';
-
-				$lable = !empty( $field['heading'] ) ? sprintf( '<label for="%1$s">%2$s %3$s</label>', $field['name'], $field['heading'], $required ) : '';
-
-				$desc = !empty( $field['desc'] ) ? sprintf( '<p class="desc description">%s</p>', $field['desc'] ) : '';
-
-				if ( function_exists( "quickfield_form_{$field['type']}" ) ) {
-
-					$output.= sprintf( $this->field_wrapper, $lable, call_user_func( "quickfield_form_{$field['type']}", $field, $value ) . $desc );
-				} else if ( has_filter( "quickfield_form_{$field['type']}" ) ) {
-
-					$field_output = apply_filters( "quickfield_form_{$field['type']}", '', $field, $value, $this->field_wrapper );
-					$output.= sprintf( $this->field_wrapper, $lable, $field_output . $desc );
+				if ( empty( $this->group_fields[$group] ) ) {
+					$this->group_fields[$group] = array();
 				}
+				$this->group_fields[$group][] = $field;
+			}
+
+
+			if ( count( $this->group_fields ) == 1 && !key( $this->group_fields ) ) {
+
+				if ( $term_id ) {
+					$this->field_wrapper = $this->field_edit_wrapper;
+				} else {
+					$this->field_wrapper = $this->field_add_wrapper;
+				}
+
+				$fields = $this->group_fields[''];
+				foreach ( $fields as $key => $field ) {
+					$output.=$this->field_render( $field );
+				}
+			} else {
+
+				$nav = '';
+				$content = '';
+				$index = 0;
+
+				//Use form add for all field in group
+				$this->field_wrapper = $this->field_add_wrapper;
+
+				foreach ( $this->group_fields as $name => $fields ) {
+					$name = empty( $name ) ? __( 'General', 'quickfield' ) : $name;
+					$index ++;
+					$active = $index == 1 ? 'active' : '';
+					$id = $this->settings['id'] . '-group_' . $index;
+					$nav.= sprintf( '<li><a href="#%s" class="%s">%s</a></li>', $id, $active, $name );
+
+					$field_html = '';
+
+					foreach ( $fields as $key => $field ) {
+						$field_html.= $this->field_render( $field );
+					}
+
+					$content.= sprintf( '<div id="%s" class="group_item %s">%s</div>', $id, $active, $field_html );
+				}
+
+				$output.='<div class="quickfield_group">';
+				$output.='<ul class="group_nav">' . $nav . '</ul>';
+				$output.='<div class="group_panel">' . $content . '</div>';
+				$output.='</div>';
+
+				if ( $term_id ) {
+					$this->field_wrapper = $this->field_edit_wrapper;
+				} else {
+					$this->field_wrapper = $this->field_add_wrapper;
+				}
+
+				$group_label = !empty( $metabox['heading'] ) ? sprintf( '<label>%s</label>', $metabox['heading'] ) : '';
+
+				$output = sprintf( $this->field_wrapper, $group_label, $output );
 			}
 
 			$quickfield_registered_fields = array_unique( $quickfield_registered_fields );
 
 			return $output;
+		}
+
+		/**
+		 * Process field
+		 * @access private
+		 * @return string Field Html
+		 */
+		private function field_render( $field ) {
+
+			$field_output = '';
+
+			$field['id'] = $field['name'];
+
+			$required = isset( $field['required'] ) && absint( $field['required'] ) ? '<span>*</span>' : '';
+
+			$lable = !empty( $field['heading'] ) ? sprintf( '<label for="%1$s">%2$s %3$s</label>', $field['name'], $field['heading'], $required ) : '';
+
+			$desc = !empty( $field['desc'] ) ? sprintf( '<p class="desc description">%s</p>', $field['desc'] ) : '';
+
+			if ( function_exists( "quickfield_form_{$field['type']}" ) ) {
+				$field_output = sprintf( $this->field_wrapper, $lable, call_user_func( "quickfield_form_{$field['type']}", $field, $field['value'] ) . $desc );
+			} else if ( has_filter( "quickfield_form_{$field['type']}" ) ) {
+
+				$field_output = apply_filters( "quickfield_form_{$field['type']}", '', $field );
+				$field_output = sprintf( $this->field_wrapper, $lable, $field_output . $desc );
+			}
+
+			return $field_output;
 		}
 
 		/**
@@ -207,18 +288,27 @@ if ( !class_exists( 'Qf_Term_Meta' ) ) {
 				$value = '';
 
 				if ( isset( $_POST[$field['name']] ) ) {
+
+
+					$input_value = $_POST[$field['name']];
+
 					if ( isset( $field['multiple'] ) && $field['multiple'] ) {
-						$value = $_POST[$field['name']];
+						$value = maybe_unserialize( $input_value );
 					} elseif ( $field['type'] == 'checkbox' ) {
-						$value = !empty( $_POST[$field['name']] ) ? 1 : 0;
+
+						$value = !empty( $input_value ) ? 1 : 0;
 					} elseif ( $field['type'] == 'link' ) {
-						$value = strip_tags( $_POST[$field['name']] );
+
+						$value = strip_tags( $input_value );
 					} elseif ( $field['type'] == 'textarea' ) {
-						$value = wp_kses( trim( wp_unslash( $_POST[$field['name']] ) ), wp_kses_allowed_html( 'post' ) );
+
+						$value = wp_kses( trim( wp_unslash( $input_value ) ), wp_kses_allowed_html( 'post' ) );
+					} elseif ( $field['type'] == 'repeater' && !empty( $input_value ) ) {
+						$value = json_encode( $input_value, JSON_UNESCAPED_UNICODE );
 					} else {
-						$value = sanitize_text_field( $_POST[$field['name']] );
+						$value = sanitize_text_field( $input_value );
 					}
-					
+
 					/**
 					 * Allow third party filter value
 					 */

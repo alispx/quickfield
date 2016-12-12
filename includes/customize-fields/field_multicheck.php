@@ -26,7 +26,7 @@ if ( class_exists( 'WP_Customize_Control' ) ):
 		 * @access public
 		 * @var int
 		 */
-		public $multiple = 0;
+		public $multiple = 1;
 
 		/**
 		 * Render control
@@ -39,10 +39,10 @@ if ( class_exists( 'WP_Customize_Control' ) ):
 			$args = array(
 				'options' => $this->choices,
 				'multiple' => $this->multiple,
-				'attr' => $this->get_link(),
+				'type' => $this->type
 			);
 			$value = '';
-
+			
 			if ( is_string( $this->value() ) && !empty( $this->value() ) && $this->multiple ) {
 				$value = explode( ',', $this->value() );
 			} else if ( is_array( $this->value() ) ) {
@@ -60,13 +60,4 @@ if ( class_exists( 'WP_Customize_Control' ) ):
 
 	
 
-	
-
-	
-
-	
-
-	
-
-	
 endif;

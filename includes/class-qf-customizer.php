@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class Customize Field
  *
@@ -23,19 +24,11 @@ if ( !class_exists( 'Qf_Customize_Field' ) ) {
 		private $wp_customize;
 
 		/**
-		 * @access private
-		 * @var array Control types global
-		 */
-		private $control_types;
-
-		/**
 		 * Init
 		 */
 		public function __construct( $wp_customize, $args = array() ) {
 
 			$this->wp_customize = $wp_customize;
-			//Set types
-			$this->set_control_types();
 
 			//Add setting
 			$this->add_setting( $args );
@@ -61,6 +54,7 @@ if ( !class_exists( 'Qf_Customize_Field' ) ) {
 				'multiple' => 0,
 				'priority' => '',
 				'choices' => array(),
+				'fields' => array()
 			);
 
 			$args = wp_parse_args( $args, $defaults );
@@ -71,7 +65,8 @@ if ( !class_exists( 'Qf_Customize_Field' ) ) {
 				'type' => $args['type'],
 				'multiple' => $args['multiple'],
 				'choices' => $args['choices'],
-				'priority' => $args['priority']
+				'priority' => $args['priority'],
+				'fields' => $args['fields']
 			);
 
 			if ( $control_args['section'] instanceof Qf_Customize_Section ) {
@@ -90,6 +85,10 @@ if ( !class_exists( 'Qf_Customize_Field' ) ) {
 
 			// Get the name of the class we're going to use.
 			$class_name = $this->control_class_name( $control_args );
+
+			if ( $class_name == 'Qf_Customize_Select_Control' ) {
+				unset( $control_args['type'] );
+			}
 
 			// Add the control.
 			$this->wp_customize->add_control( new $class_name( $this->wp_customize, $control_name, $control_args ) );
@@ -120,34 +119,6 @@ if ( !class_exists( 'Qf_Customize_Field' ) ) {
 			$this->wp_customize->add_setting( $setting_name, $setting_args );
 		}
 
-		private function set_control_types() {
-
-			global $quickfield_control_types;
-
-			if ( empty( $quickfield_control_types ) ) {
-
-				$quickfield_control_types = apply_filters( 'quickfield_control_types', array(
-					'image' => 'WP_Customize_Image_Control',
-					'cropped_image' => 'WP_Customize_Cropped_Image_Control',
-					'upload' => 'WP_Customize_Upload_Control',
-					'color' => 'WP_Customize_Color_Control',
-					'qf_select' => 'Qf_Customize_Select_Control',
-					'qf_multicheck' => 'Qf_Customize_Multicheck_Control',
-					'qf_icon_picker' => 'Qf_Customize_Icon_Picker_Control'
-						) );
-
-				// Make sure the defined classes actually exist.
-				foreach ( $quickfield_control_types as $key => $classname ) {
-
-					if ( !class_exists( $classname ) ) {
-						unset( $quickfield_control_types[$key] );
-					}
-				}
-			}
-
-			$this->control_types = $quickfield_control_types;
-		}
-
 		private function control_class_name( $args ) {
 
 			$class_name = 'WP_Customize_Control';
@@ -162,8 +133,10 @@ if ( !class_exists( 'Qf_Customize_Field' ) ) {
 				}
 			}
 
-			if ( array_key_exists( $type, $this->control_types ) ) {
-				$class_name = $this->control_types[$type];
+			global $quickfield_control_types;
+
+			if ( array_key_exists( $type, $quickfield_control_types ) ) {
+				$class_name = $quickfield_control_types[$type];
 			}
 
 			return $class_name;
@@ -174,6 +147,7 @@ if ( !class_exists( 'Qf_Customize_Field' ) ) {
 }
 
 if ( !class_exists( 'Qf_Customize_Section' ) ) {
+
 	/**
 	 * Qf_Customize_Section Class
 	 */
@@ -267,6 +241,7 @@ if ( !class_exists( 'Qf_Customize_Section' ) ) {
 }
 
 if ( !class_exists( 'Qf_Customize_Panel' ) ) {
+
 	/**
 	 * Qf_Customize_Panel Class
 	 */
