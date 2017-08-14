@@ -255,17 +255,3 @@ function quickfield() {
 
 // Global for backwards compatibility.
 $GLOBALS['quickfield'] = quickfield();
-
-
-/**
- * Sample
- * 
- * 1. Widget Demo
- * 2. Term Meta Demo
- * 3. Post, Page Metabox Demo
- * 4. Customizer Demo
- * 
- * Uncomment this file bellow to see demo
- * include QUICKFIELD_DIR . 'sample/sample.php';
- */
-//include QUICKFIELD_DIR . 'sample/sample.php';
